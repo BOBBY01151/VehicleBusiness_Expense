@@ -52,6 +52,32 @@ class UserController {
     }
   }
 
+  // Get current user profile
+  async getProfile(req, res) {
+    try {
+      const userId = req.user.id;
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: 'User not found'
+        });
+      }
+
+      res.json({
+        success: true,
+        data: { user: user.toJSON() }
+      });
+    } catch (error) {
+      logger.error('Get profile controller error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to get profile'
+      });
+    }
+  }
+
   // Get user by ID
   async getUserById(req, res) {
     try {

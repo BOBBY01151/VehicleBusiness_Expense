@@ -179,6 +179,17 @@ const Login = () => {
             <div className="mt-4 grid grid-cols-1 gap-2">
               <button
                 type="button"
+                onClick={() => {
+                  // Direct access to admin panel without authentication
+                  navigate('/admin');
+                }}
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors"
+              >
+                🔧 Direct Admin Panel Access
+              </button>
+              
+              <button
+                type="button"
                 onClick={async () => {
                   // Auto-login as Sri Lankan user
                   try {

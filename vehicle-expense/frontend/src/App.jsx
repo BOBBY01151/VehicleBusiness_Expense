@@ -23,6 +23,9 @@ import SharedExpenses from './features/srilanka/SharedExpenses'
 // Parts Routes
 import PartsManagement from './features/parts/PartsManagement'
 
+// Admin Routes
+import AdminDashboard from './features/admin/AdminDashboard'
+
 function App() {
   const { user, isAuthenticated } = useSelector((state) => state.auth)
 
@@ -62,11 +65,13 @@ function App() {
                     </>
                   )}
                   
-                  {/* Admin Routes */}
+                  {/* Admin Routes - Direct access without authentication */}
+                  <Route path="/admin" element={<AdminDashboard />} />
+                  
+                  {/* Admin Routes with authentication */}
                   {user?.role === 'ROLE_ADMIN' && (
                     <>
                       <Route path="/" element={<Navigate to="/admin" replace />} />
-                      <Route path="/admin" element={<div>Admin Dashboard</div>} />
                     </>
                   )}
                   

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { LogOut, User, Bell, Settings } from 'lucide-react'
 import { logout } from '../../store/slices/authSlice'
 
 const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const { user } = useSelector((state) => state.auth)
   const [showDropdown, setShowDropdown] = useState(false)
 
@@ -41,7 +42,7 @@ const Header = () => {
               Vehicle Expense Management
             </h1>
             <span className="text-sm text-gray-500">
-              {getRoleDisplayName(user?.role)}
+              {location.pathname === '/admin' ? 'Admin Panel' : getRoleDisplayName(user?.role)}
             </span>
           </div>
 
@@ -62,7 +63,7 @@ const Header = () => {
                   <User className="h-4 w-4 text-white" />
                 </div>
                 <span className="text-sm font-medium">
-                  {user?.firstName} {user?.lastName}
+                  {location.pathname === '/admin' ? 'Admin User' : `${user?.firstName} ${user?.lastName}`}
                 </span>
               </button>
 

@@ -1,17 +1,23 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { getProfile } from '../../store/slices/authSlice'
 
 const ProtectedRoute = ({ children }) => {
   const dispatch = useDispatch()
   const { isAuthenticated, user, token } = useSelector((state) => state.auth)
+  const location = useLocation()
 
   useEffect(() => {
     if (token && !user) {
       dispatch(getProfile())
     }
   }, [dispatch, token, user])
+
+  // Allow direct access to admin panel without authentication
+  if (location.pathname === '/admin') {
+    return children
+  }
 
   if (!token) {
     return <Navigate to="/login" replace />
