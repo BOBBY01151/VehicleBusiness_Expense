@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FigmaNavbar } from '../../components/figma/FigmaNavbar';
 import { FigmaSidebar } from '../../components/figma/FigmaSidebar';
 import { FigmaDashboard } from '../../components/figma/FigmaDashboard';
+import { FigmaSpareParts } from '../../components/figma/FigmaSpareParts';
 
 export default function FigmaAdminDashboard() {
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -34,11 +35,7 @@ export default function FigmaAdminDashboard() {
 
           <main className="flex-1 overflow-hidden">
             {currentPage === 'dashboard' && <FigmaDashboard />}
-            {currentPage === 'spare-parts' && (
-              <div className="h-full flex items-center justify-center">
-                <div className="text-white/60 text-lg">Spare Parts Page - Coming Soon</div>
-              </div>
-            )}
+            {currentPage === 'spare-parts' && <FigmaSpareParts />}
             {currentPage === 'rentals' && (
               <div className="h-full flex items-center justify-center">
                 <div className="text-white/60 text-lg">Rentals Page - Coming Soon</div>
