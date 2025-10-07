@@ -25,6 +25,7 @@ import PartsManagement from './features/parts/PartsManagement'
 
 // Admin Routes
 import AdminDashboard from './features/admin/AdminDashboard'
+import FigmaAdminDashboard from './features/admin/FigmaAdminDashboard'
 
 function App() {
   const { user, isAuthenticated } = useSelector((state) => state.auth)
@@ -37,6 +38,9 @@ function App() {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/exporter-login" element={<ExporterLogin />} />
+        
+        {/* Figma Design Dashboard - Direct access for UI design */}
+        <Route path="/admin" element={<FigmaAdminDashboard />} />
         
         {/* Protected Routes */}
         <Route
@@ -65,8 +69,8 @@ function App() {
                     </>
                   )}
                   
-                  {/* Admin Routes - Direct access without authentication */}
-                  <Route path="/admin" element={<AdminDashboard />} />
+                  {/* Old Admin Dashboard - Direct access without authentication */}
+                  <Route path="/admin-old" element={<AdminDashboard />} />
                   
                   {/* Admin Routes with authentication */}
                   {user?.role === 'ROLE_ADMIN' && (

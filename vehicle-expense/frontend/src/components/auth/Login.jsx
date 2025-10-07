@@ -165,73 +165,28 @@ const Login = () => {
             </div>
           </form>
 
-          {/* Developer Quick Login Buttons */}
+          {/* UI Designer Quick Access */}
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Developer Quick Login</span>
+                <span className="px-2 bg-white text-gray-500">UI Designer Access</span>
               </div>
             </div>
 
-            <div className="mt-4 grid grid-cols-1 gap-2">
+            <div className="mt-4">
               <button
                 type="button"
                 onClick={() => {
-                  // Direct access to admin panel without authentication
+                  // Direct access for UI design work
+                  toast.success('Entering UI Design Mode');
                   navigate('/admin');
                 }}
-                className="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors"
               >
-                🔧 Direct Admin Panel Access
-              </button>
-              
-              <button
-                type="button"
-                onClick={async () => {
-                  // Auto-login as Sri Lankan user
-                  try {
-                    const result = await dispatch(login({
-                      email: 'srilanka@example.com',
-                      password: 'password123',
-                      role: 'ROLE_LOCAL'
-                    })).unwrap();
-
-                    toast.success('Logged in as Sri Lankan User!');
-                    navigate('/srilanka');
-                  } catch (error) {
-                    toast.error('Auto-login failed. Please check if test users are seeded.');
-                    console.error('Auto-login error:', error);
-                  }
-                }}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors"
-              >
-                🇱🇰 Auto Login as Sri Lankan User
-              </button>
-              
-              <button
-                type="button"
-                onClick={async () => {
-                  // Auto-login as Japan Exporter
-                  try {
-                    const result = await dispatch(login({
-                      email: 'exporter@example.com',
-                      password: 'password123',
-                      role: 'ROLE_EXPORTER'
-                    })).unwrap();
-
-                    toast.success('Logged in as Japan Exporter!');
-                    navigate('/exporter');
-                  } catch (error) {
-                    toast.error('Auto-login failed. Please check if test users are seeded.');
-                    console.error('Auto-login error:', error);
-                  }
-                }}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors"
-              >
-                🇯🇵 Auto Login as Japan Exporter
+                🎨 UI Design Mode - Direct Access
               </button>
             </div>
           </div>
