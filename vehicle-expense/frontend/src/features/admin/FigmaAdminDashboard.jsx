@@ -4,6 +4,7 @@ import { FigmaSidebar } from '../../components/figma/FigmaSidebar';
 import { FigmaDashboard } from '../../components/figma/FigmaDashboard';
 import { FigmaSpareParts } from '../../components/figma/FigmaSpareParts';
 import { FigmaRentals } from '../../components/figma/FigmaRentals';
+import { FigmaSales } from '../../components/figma/FigmaSales';
 
 export default function FigmaAdminDashboard() {
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -38,11 +39,7 @@ export default function FigmaAdminDashboard() {
             {currentPage === 'dashboard' && <FigmaDashboard />}
             {currentPage === 'spare-parts' && <FigmaSpareParts />}
             {currentPage === 'rentals' && <FigmaRentals />}
-            {currentPage === 'sales' && (
-              <div className="h-full flex items-center justify-center">
-                <div className="text-white/60 text-lg">Sales Page - Coming Soon</div>
-              </div>
-            )}
+            {currentPage === 'sales' && <FigmaSales />}
             {currentPage === 'yard-inventory' && (
               <div className="h-full flex items-center justify-center">
                 <div className="text-white/60 text-lg">Yard Inventory Page - Coming Soon</div>
