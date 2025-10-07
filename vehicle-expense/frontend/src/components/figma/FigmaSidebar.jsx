@@ -8,7 +8,8 @@ import {
   Package, 
   MapPin,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  User
 } from 'lucide-react';
 
 const menuItems = [
@@ -17,6 +18,7 @@ const menuItems = [
   { id: 'rentals', label: 'Rentals', icon: Car },
   { id: 'sales', label: 'Sales', icon: ShoppingCart },
   { id: 'yard-inventory', label: 'Yard Inventory', icon: MapPin },
+  { id: 'profile', label: 'Profile', icon: User },
 ];
 
 export function FigmaSidebar({ currentPage, setCurrentPage, expanded, setExpanded }) {

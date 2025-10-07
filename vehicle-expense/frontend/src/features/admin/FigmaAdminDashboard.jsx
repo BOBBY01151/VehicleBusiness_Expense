@@ -6,6 +6,7 @@ import { FigmaSpareParts } from '../../components/figma/FigmaSpareParts';
 import { FigmaRentals } from '../../components/figma/FigmaRentals';
 import { FigmaSales } from '../../components/figma/FigmaSales';
 import { FigmaYardInventory } from '../../components/figma/FigmaYardInventory';
+import { FigmaProfile } from '../../components/figma/FigmaProfile';
 
 export default function FigmaAdminDashboard() {
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -42,6 +43,7 @@ export default function FigmaAdminDashboard() {
             {currentPage === 'rentals' && <FigmaRentals />}
             {currentPage === 'sales' && <FigmaSales />}
             {currentPage === 'yard-inventory' && <FigmaYardInventory />}
+            {currentPage === 'profile' && <FigmaProfile />}
           </main>
         </div>
       </div>
