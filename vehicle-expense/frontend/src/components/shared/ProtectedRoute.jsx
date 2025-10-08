@@ -14,8 +14,9 @@ const ProtectedRoute = ({ children }) => {
     }
   }, [dispatch, token, user])
 
-  // Allow direct access to admin panel without authentication
-  if (location.pathname === '/admin') {
+  // Allow direct access for UI designers without authentication
+  const uiDesignerPaths = ['/admin', '/exporter', '/srilanka', '/figma-dashboard']
+  if (uiDesignerPaths.some(path => location.pathname.startsWith(path))) {
     return children
   }
 

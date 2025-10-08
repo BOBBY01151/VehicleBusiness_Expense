@@ -39,8 +39,18 @@ const Sidebar = () => {
 
   const getNavItems = () => {
     // Show admin nav items when on admin page
-    if (location.pathname === '/admin') {
+    if (location.pathname === '/admin' || location.pathname === '/admin-old') {
       return adminNavItems
+    }
+    
+    // Show exporter nav items when on exporter pages (for UI designers)
+    if (location.pathname.startsWith('/exporter')) {
+      return exporterNavItems
+    }
+    
+    // Show local nav items when on srilanka pages (for UI designers)
+    if (location.pathname.startsWith('/srilanka')) {
+      return localNavItems
     }
     
     switch (user?.role) {

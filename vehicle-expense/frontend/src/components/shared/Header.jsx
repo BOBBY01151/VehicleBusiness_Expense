@@ -42,7 +42,10 @@ const Header = () => {
               Vehicle Expense Management
             </h1>
             <span className="text-sm text-gray-500">
-              {location.pathname === '/admin' ? 'Admin Panel' : getRoleDisplayName(user?.role)}
+              {location.pathname === '/admin' ? 'UI Design Mode' : 
+               location.pathname.startsWith('/exporter') ? 'Japan Exporter (UI Design)' :
+               location.pathname.startsWith('/srilanka') ? 'Sri Lanka User (UI Design)' :
+               getRoleDisplayName(user?.role)}
             </span>
           </div>
 
@@ -63,7 +66,10 @@ const Header = () => {
                   <User className="h-4 w-4 text-white" />
                 </div>
                 <span className="text-sm font-medium">
-                  {location.pathname === '/admin' ? 'Admin User' : `${user?.firstName} ${user?.lastName}`}
+                  {location.pathname === '/admin' ? 'UI Designer' :
+                   location.pathname.startsWith('/exporter') ? 'Exporter (Design Mode)' :
+                   location.pathname.startsWith('/srilanka') ? 'Sri Lanka (Design Mode)' :
+                   user ? `${user.firstName} ${user.lastName}` : 'UI Designer'}
                 </span>
               </button>
 
