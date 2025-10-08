@@ -23,6 +23,9 @@ import SharedExpenses from './features/srilanka/SharedExpenses'
 // Parts Routes
 import PartsManagement from './features/parts/PartsManagement'
 
+// Admin/Figma Routes (Public for UI Design)
+import FigmaAdminDashboard from './features/admin/FigmaAdminDashboard'
+
 function App() {
   const { user, isAuthenticated } = useSelector((state) => state.auth)
 
@@ -34,6 +37,9 @@ function App() {
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/exporter-login" element={<ExporterLogin />} />
+        
+        {/* UI Designer Route - No Auth Required */}
+        <Route path="/admin/figma" element={<FigmaAdminDashboard />} />
         
         {/* Protected Routes */}
         <Route

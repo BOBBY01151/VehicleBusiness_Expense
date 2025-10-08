@@ -74,6 +74,12 @@ const Login = () => {
     }
   }
 
+  // Quick access for UI Designer - Admin Dashboard (No login required)
+  const handleQuickAccessAdmin = () => {
+    toast.success('Opening Admin Dashboard for UI Design!')
+    navigate('/admin/figma')
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -226,11 +232,24 @@ const Login = () => {
               </button>
             </div>
 
+            {/* UI Designer Quick Access - No Login Required */}
+            <div className="mt-4">
+              <button
+                type="button"
+                onClick={handleQuickAccessAdmin}
+                className="w-full btn bg-purple-600 text-white hover:bg-purple-700 text-sm py-2.5 font-semibold"
+              >
+                🎨 Admin Dashboard (UI Designer Mode)
+              </button>
+            </div>
+
             <div className="mt-4 text-center">
               <p className="text-xs text-gray-500">
                 Demo credentials: srilanka@test.com / exporter@test.com
                 <br />
                 Password: password123
+                <br />
+                <span className="text-purple-600 font-medium">🎨 UI Designer: No login needed!</span>
               </p>
             </div>
           </div>
