@@ -23,13 +23,6 @@ import SharedExpenses from './features/srilanka/SharedExpenses'
 // Parts Routes
 import PartsManagement from './features/parts/PartsManagement'
 
-// Admin Routes
-import AdminDashboard from './features/admin/AdminDashboard'
-import FigmaAdminDashboard from './features/admin/FigmaAdminDashboard'
-
-// Figma Dashboard
-import { FigmaDashboard } from './components/figma/FigmaDashboard'
-
 function App() {
   const { user, isAuthenticated } = useSelector((state) => state.auth)
 
@@ -42,12 +35,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/exporter-login" element={<ExporterLogin />} />
         
-        {/* UI Design Mode - Direct access for designers */}
-        <Route path="/admin" element={<FigmaAdminDashboard />} />
-        
-        {/* Figma Dashboard - Premium UI Design */}
-        <Route path="/figma-dashboard" element={<FigmaDashboard />} />
-        
         {/* Protected Routes */}
         <Route
           path="/*"
@@ -55,37 +42,31 @@ function App() {
             <ProtectedRoute>
               <Layout>
                 <Routes>
-                  {/* Exporter Routes - Direct access for UI designers */}
-                  <Route path="/exporter" element={<ExporterDashboard />} />
-                  <Route path="/exporter/expenses" element={<ExporterExpenses />} />
-                  <Route path="/exporter/expenses/create" element={<ExpenseCreate />} />
-                  <Route path="/exporter/parts" element={<PartsManagement />} />
-                  
-                  {/* Sri Lanka Routes - Direct access for UI designers */}
-                  <Route path="/srilanka" element={<SLDashboard />} />
-                  <Route path="/srilanka/expenses" element={<SharedExpenses />} />
-                  
-                  {/* Authenticated Exporter Routes */}
+                  {/* Exporter Routes */}
                   {user?.role === 'ROLE_EXPORTER' && (
                     <>
                       <Route path="/" element={<Navigate to="/exporter" replace />} />
+                      <Route path="/exporter" element={<ExporterDashboard />} />
+                      <Route path="/exporter/expenses" element={<ExporterExpenses />} />
+                      <Route path="/exporter/expenses/create" element={<ExpenseCreate />} />
+                      <Route path="/exporter/parts" element={<PartsManagement />} />
                     </>
                   )}
                   
-                  {/* Authenticated Sri Lanka Routes */}
+                  {/* Sri Lanka Routes */}
                   {user?.role === 'ROLE_LOCAL' && (
                     <>
                       <Route path="/" element={<Navigate to="/srilanka" replace />} />
+                      <Route path="/srilanka" element={<SLDashboard />} />
+                      <Route path="/srilanka/expenses" element={<SharedExpenses />} />
                     </>
                   )}
                   
-                  {/* Old Admin Dashboard - Direct access without authentication */}
-                  <Route path="/admin-old" element={<AdminDashboard />} />
-                  
-                  {/* Admin Routes with authentication */}
+                  {/* Admin Routes */}
                   {user?.role === 'ROLE_ADMIN' && (
                     <>
                       <Route path="/" element={<Navigate to="/admin" replace />} />
+                      <Route path="/admin" element={<div>Admin Dashboard</div>} />
                     </>
                   )}
                   

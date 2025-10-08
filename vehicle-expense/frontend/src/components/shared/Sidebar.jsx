@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import {
   Home,
@@ -13,7 +13,6 @@ import {
 
 const Sidebar = () => {
   const { user } = useSelector((state) => state.auth)
-  const location = useLocation()
 
   const exporterNavItems = [
     { path: '/exporter', label: 'Dashboard', icon: Home },
@@ -38,21 +37,6 @@ const Sidebar = () => {
   ]
 
   const getNavItems = () => {
-    // Show admin nav items when on admin page
-    if (location.pathname === '/admin' || location.pathname === '/admin-old') {
-      return adminNavItems
-    }
-    
-    // Show exporter nav items when on exporter pages (for UI designers)
-    if (location.pathname.startsWith('/exporter')) {
-      return exporterNavItems
-    }
-    
-    // Show local nav items when on srilanka pages (for UI designers)
-    if (location.pathname.startsWith('/srilanka')) {
-      return localNavItems
-    }
-    
     switch (user?.role) {
       case 'ROLE_EXPORTER':
         return exporterNavItems

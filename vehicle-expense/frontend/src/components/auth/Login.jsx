@@ -16,8 +16,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue
+    formState: { errors }
   } = useForm()
 
   const onSubmit = async (data) => {
@@ -40,6 +39,38 @@ const Login = () => {
       }
     } catch (error) {
       toast.error(error || 'Login failed')
+    }
+  }
+
+  // Quick login for development - Sri Lankan Importer
+  const handleQuickLoginSriLanka = async () => {
+    try {
+      const result = await dispatch(login({
+        email: 'srilanka@test.com',
+        password: 'password123',
+        role: 'ROLE_LOCAL'
+      })).unwrap()
+
+      toast.success('Quick login successful!')
+      navigate('/srilanka')
+    } catch (error) {
+      toast.error('Demo account not found. Please register first or use your credentials.')
+    }
+  }
+
+  // Quick login for development - Japan Exporter
+  const handleQuickLoginExporter = async () => {
+    try {
+      const result = await dispatch(login({
+        email: 'exporter@test.com',
+        password: 'password123',
+        role: 'ROLE_EXPORTER'
+      })).unwrap()
+
+      toast.success('Quick login successful!')
+      navigate('/exporter')
+    } catch (error) {
+      toast.error('Demo account not found. Please register first or use your credentials.')
     }
   }
 
@@ -165,29 +196,42 @@ const Login = () => {
             </div>
           </form>
 
-          {/* UI Designer Quick Access */}
+          {/* Quick Login Buttons for Development */}
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">UI Designer Access</span>
+                <span className="px-2 bg-white text-gray-500">Quick Login (Dev Mode)</span>
               </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-4 grid grid-cols-2 gap-3">
               <button
                 type="button"
-                onClick={() => {
-                  // Direct access for UI design work
-                  toast.success('Entering UI Design Mode');
-                  navigate('/admin');
-                }}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors"
+                onClick={handleQuickLoginSriLanka}
+                disabled={isLoading}
+                className="btn bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 text-sm py-2"
               >
-                🎨 UI Design Mode - Direct Access
+                🇱🇰 Sri Lanka User
               </button>
+              <button
+                type="button"
+                onClick={handleQuickLoginExporter}
+                disabled={isLoading}
+                className="btn bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 text-sm py-2"
+              >
+                🇯🇵 Japan Exporter
+              </button>
+            </div>
+
+            <div className="mt-4 text-center">
+              <p className="text-xs text-gray-500">
+                Demo credentials: srilanka@test.com / exporter@test.com
+                <br />
+                Password: password123
+              </p>
             </div>
           </div>
 

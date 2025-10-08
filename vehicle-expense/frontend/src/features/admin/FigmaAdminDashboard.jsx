@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Truck, Users, FileText, Package, ArrowRight, Sparkles } from 'lucide-react'
+import { Truck, Users, FileText, Package, ArrowRight } from 'lucide-react'
 
 const FigmaAdminDashboard = () => {
   const navigate = useNavigate()
@@ -17,13 +17,12 @@ const FigmaAdminDashboard = () => {
     },
     {
       title: 'Sri Lanka User Dashboard',
-      description: 'Beautiful Figma-style UI with glassmorphism',
-      icon: Sparkles,
-      color: 'bg-gradient-to-r from-green-600 to-emerald-600',
-      hoverColor: 'hover:from-green-700 hover:to-emerald-700',
-      path: '/figma-dashboard',
-      features: ['Glassmorphism Design', 'Animated Charts', 'Modern UI Components', 'Real-time Analytics'],
-      badge: '✨ Premium Design'
+      description: 'Design and test the local user interface',
+      icon: Users,
+      color: 'bg-green-600',
+      hoverColor: 'hover:bg-green-700',
+      path: '/srilanka',
+      features: ['View Shared Expenses', 'Accept/Reject', 'Browse Exporters', 'Notifications']
     }
   ]
 
@@ -52,12 +51,7 @@ const FigmaAdminDashboard = () => {
                 key={dashboard.path}
                 className="bg-white rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
               >
-                <div className={`${dashboard.color} p-6 text-white relative overflow-hidden`}>
-                  {dashboard.badge && (
-                    <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold">
-                      {dashboard.badge}
-                    </div>
-                  )}
+                <div className={`${dashboard.color} p-6 text-white`}>
                   <Icon className="h-12 w-12 mb-4" />
                   <h2 className="text-2xl font-bold mb-2">{dashboard.title}</h2>
                   <p className="text-white/90">{dashboard.description}</p>
